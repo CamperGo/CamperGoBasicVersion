@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         proximityContentManager = new ProximityContentManager(this,
                 Arrays.asList(
-                        new BeaconID("B9407F30-F5F8-466E-AFF9-25556B57FE6D", 1, 1)),
+                        new BeaconID("B9407F30-F5F8-466E-AFF9-25556B57FE6D", 1, 4)
+                        ),
                 new EstimoteCloudBeaconDetailsFactory());
         proximityContentManager.setListener(new ProximityContentManager.Listener() {
             @Override
@@ -63,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
                         backgroundColor != null ? backgroundColor : BACKGROUND_COLOR_NEUTRAL);
             }
         });
+        SearchTest ts = new SearchTest();
+        ts.setProximityContentManager(this.proximityContentManager);
+        Thread thr = new Thread(ts);
+        thr.run();
     }
 
     @Override
